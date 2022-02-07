@@ -8,8 +8,14 @@ const CORRECT_TEXT_SUFFIX = "korrekt";
 // 2. wenn alle am falschen spot: "alle an falscher Stelle"
 
 const transform = (input) => {
+  if (input === undefined || typeof input !== "string" || input.length === 0) {
+    throw new Error("Invalid input");
+  }
+
+  const sanitizedInput = input.trim();
+
   // TODO input validation: is input defined and is input well-formed
-  const lines = input.split("\n");
+  const lines = sanitizedInput.split("\n");
 
   let result = "";
 
@@ -44,7 +50,7 @@ const transform = (input) => {
       correctSpotNumbers.length === 0 &&
       wrongSpotNumbers.length === 0
     ) {
-      result += `Zeile ${index + 1}: ZONK!!\n`;
+      result += `Zeile ${index + 1}: ZONK!\n`;
     } else if (wrongSpotNumbers.length > 0 && correctSpotNumbers.length === 0) {
       result += `Zeile ${
         index + 1
