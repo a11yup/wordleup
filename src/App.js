@@ -29,7 +29,7 @@ function App() {
       <header>
         <h1>WORDLE UP!</h1>
         <p className="subtext">
-          Ein Konverter für Wordle Emoji Matrix in reinen Text (für mehr
+          Wandle eine Wordle Emoji Matrix in reine Textbeschreibung um (für mehr
           Accessibility in Wordle Tweets)
         </p>
       </header>
