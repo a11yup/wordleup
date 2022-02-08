@@ -6,7 +6,7 @@ const WIN_TEXT = "GG!";
 const ALL_WRONG_TEXT = "ZONK!";
 const ALL_IN_WRONG_SPOT_TEXT = "Alles an falscher Stelle";
 export const INVALID_INPUT_ERROR_MESSAGE =
-  "Ungültige Eingabe. Die Eingabe muss aus 1-5 Zeilen bestehen die jeweils genau 5 Zeichen aus der folgenden Liste enthalten: 🟨, ⬜, 🟩";
+  "Ungültige Eingabe. Die Eingabe muss aus 1-5 Zeilen bestehen, die jeweils genau 5 Zeichen aus der folgenden Liste enthalten: 🟨, ⬜, 🟩";
 const EMPTY_INPUT_ERROR_MESSAGE =
   "Die Eingabe ist ungültig. Sie muss einen nicht-leeren Text enthalten";
 
