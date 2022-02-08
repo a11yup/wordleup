@@ -22,7 +22,7 @@
 
 .result {
   white-space: pre;
-  text-align: left;
+  font-size: 1.25rem;
 }
 
 .input-output-area {
@@ -39,4 +39,5 @@
 .error-message {
   font-size: 16px;
   color: pink;
+  min-height: 3rem;
 }

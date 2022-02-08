@@ -43,7 +43,7 @@ function App() {
           </div>
           <div className="output-area">
             <h2>Resultat</h2>
-            <p className="result">{result}</p>
+            <code className="result">{result}</code>
           </div>
         </div>
       </header>
