@@ -5,6 +5,13 @@ const CORRECT_TEXT_SUFFIX = "korrekt";
 const WIN_TEXT = "GG!";
 const ALL_WRONG_TEXT = "ZONK!";
 const ALL_IN_WRONG_SPOT_TEXT = "Alles an falscher Stelle";
+export const INVALID_INPUT_ERROR_MESSAGE =
+  "Ungültige Eingabe. Die Eingabe muss aus 1-5 Zeilen bestehen die jeweils genau 5 Zeichen aus der folgenden Liste enthalten: 🟨, ⬜, 🟩";
+const EMPTY_INPUT_ERROR_MESSAGE =
+  "Die Eingabe ist ungültig. Sie muss einen nicht-leeren Text enthalten";
+
+const INPUT_VALIDATION_PATTERN =
+  /[🟩🟨⬜]{5}\n(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n?)?$/u;
 
 const createEnumerationString = (numbers) =>
   numbers.reduce((previous, current, index) => {
@@ -19,13 +26,16 @@ const createEnumerationString = (numbers) =>
 
 const transform = (input) => {
   if (input === undefined || typeof input !== "string" || input.length === 0) {
-    throw new Error("Invalid input");
+    throw new Error(EMPTY_INPUT_ERROR_MESSAGE);
   }
 
-  const sanitizedInput = input.trim();
+  if (!INPUT_VALIDATION_PATTERN.test(input)) {
+    throw new Error(INVALID_INPUT_ERROR_MESSAGE);
+  }
 
-  // TODO input validation: is input defined and is input well-formed
-  const lines = sanitizedInput.split("\n");
+  const trimmedInput = input.trim();
+
+  const lines = trimmedInput.split("\n");
 
   let alreadySolved = false;
 
