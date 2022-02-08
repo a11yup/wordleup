@@ -47,3 +47,15 @@ it("lose completely", () => {
 
   expect(result).toBe(targetResult);
 });
+
+it("everything in its wrong place all the time", () => {
+  const input = `🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨`;
+  const result = transform(input);
+
+  const targetResult = `Zeile 1: Alles an falscher Stelle\nZeile 2: Alles an falscher Stelle\nZeile 3: Alles an falscher Stelle\nZeile 4: Alles an falscher Stelle\nZeile 5: Alles an falscher Stelle`;
+
+  console.log(result);
+  console.log(targetResult);
+
+  expect(result).toBe(targetResult);
+});

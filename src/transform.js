@@ -2,10 +2,9 @@ const CORRECT = "🟩";
 const WRONG_SPOT = "🟨";
 const WRONG_SPOT_TEXT_SUFFIX = "an falscher Stelle";
 const CORRECT_TEXT_SUFFIX = "korrekt";
-
-// Nice-to-haves
-// 1. letztes komma durch ein und ersetzen ✅
-// 2. wenn alle am falschen spot: "alle an falscher Stelle"
+const WIN_TEXT = "GG!";
+const ALL_WRONG_TEXT = "ZONK!";
+const ALL_IN_WRONG_SPOT_TEXT = "Alles an falscher Stelle";
 
 const createEnumerationString = (numbers) =>
   numbers.reduce((previous, current, index) => {
@@ -28,8 +27,6 @@ const transform = (input) => {
   // TODO input validation: is input defined and is input well-formed
   const lines = sanitizedInput.split("\n");
 
-  // let result = "";
-
   let alreadySolved = false;
 
   const result = lines
@@ -48,15 +45,20 @@ const transform = (input) => {
 
       const allCorrect = correctNumbers.length === 5;
       const allWrong = correctNumbers.length + wrongSpotNumbers.length === 0;
+      const allInWrongSpot = wrongSpotNumbers.length === 5;
 
       // early return with "GG" and don't consider any following lines anymore
       if (allCorrect) {
         alreadySolved = true;
-        return `${LINE_TEXT_PREFIX} GG!`;
+        return `${LINE_TEXT_PREFIX} ${WIN_TEXT}`;
       }
 
       // early return when the whole line does not anything correct
-      if (allWrong) return `${LINE_TEXT_PREFIX} ZONK!`;
+      if (allWrong) return `${LINE_TEXT_PREFIX} ${ALL_WRONG_TEXT}`;
+
+      // early return when the whole line has everything in the wrong spot
+      if (allInWrongSpot)
+        return `${LINE_TEXT_PREFIX} ${ALL_IN_WRONG_SPOT_TEXT}`;
 
       // in all other cases: create properly enumerates text strings for the two relevant cases:
       // correct and in wrong spot
