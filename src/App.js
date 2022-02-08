@@ -20,6 +20,10 @@ function App() {
     }
   };
 
+  const handleCopyClick = (event) => {
+    navigator.clipboard.writeText(result);
+  };
+
   return (
     <div className="App">
       <header>
@@ -48,6 +52,11 @@ function App() {
           </div>
           <div className="output-area">
             <h2>Resultat</h2>
+            {result && (
+              <button className="copy-button" onClick={handleCopyClick}>
+                Kopieren
+              </button>
+            )}
             <code className="result">{result}</code>
           </div>
         </div>
