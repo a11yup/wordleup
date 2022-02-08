@@ -13,7 +13,7 @@ it("outputs the correct result when there is a win in last round", () => {
   const input = `⬜⬜🟨⬜🟨\n🟨⬜🟨🟨⬜\n⬜⬜🟩🟩🟨\n⬜🟩🟩🟩🟨\n🟩🟩🟩🟩🟩`;
   const result = transform(input);
 
-  const targetResult = `Zeile 1: 3. und 5. an falscher Stelle\nZeile 2: 1. und 3. und 4. an falscher Stelle\nZeile 3: 3. und 4. korrekt, 5. an falscher Stelle\nZeile 4: 2. und 3. und 4. korrekt, 5. an falscher Stelle\nZeile 5: GG!`;
+  const targetResult = `Zeile 1: 3. und 5. an falscher Stelle\nZeile 2: 1., 3. und 4. an falscher Stelle\nZeile 3: 3. und 4. korrekt, 5. an falscher Stelle\nZeile 4: 2., 3. und 4. korrekt, 5. an falscher Stelle\nZeile 5: GG!`;
 
   expect(result).toBe(targetResult);
 });
@@ -22,7 +22,7 @@ it("outputs the correct result when there is a win in the 4th round", () => {
   const input = `⬜⬜🟨⬜🟨\n🟨⬜🟨🟨⬜\n⬜⬜🟩🟩🟨\n🟩🟩🟩🟩🟩`;
   const result = transform(input);
 
-  const targetResult = `Zeile 1: 3. und 5. an falscher Stelle\nZeile 2: 1. und 3. und 4. an falscher Stelle\nZeile 3: 3. und 4. korrekt, 5. an falscher Stelle\nZeile 4: GG!`;
+  const targetResult = `Zeile 1: 3. und 5. an falscher Stelle\nZeile 2: 1., 3. und 4. an falscher Stelle\nZeile 3: 3. und 4. korrekt, 5. an falscher Stelle\nZeile 4: GG!`;
 
   expect(result).toBe(targetResult);
 });
