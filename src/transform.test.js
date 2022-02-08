@@ -10,10 +10,10 @@ it("outputs the correct result when the first line is already a win", () => {
 });
 
 it("outputs the correct result when there is a win in last round", () => {
-  const input = `⬜⬜🟨⬜🟨\n🟨⬜🟨🟨⬜\n⬜⬜🟩🟩🟨\n⬜🟩🟩🟩🟨\n🟩🟩🟩🟩🟩`;
+  const input = `⬜⬜🟨⬜🟨\n🟨⬜🟨🟨⬜\n⬜⬜🟩🟩🟨\n⬜🟩🟩🟩🟨\n🟩🟨🟩🟩🟩\n🟩🟩🟩🟩🟩`;
   const result = transform(input);
 
-  const targetResult = `Zeile 1: 3. und 5. an falscher Stelle\nZeile 2: 1., 3. und 4. an falscher Stelle\nZeile 3: 3. und 4. korrekt, 5. an falscher Stelle\nZeile 4: 2., 3. und 4. korrekt, 5. an falscher Stelle\nZeile 5: GG!`;
+  const targetResult = `Zeile 1: 3. und 5. an falscher Stelle\nZeile 2: 1., 3. und 4. an falscher Stelle\nZeile 3: 3. und 4. korrekt, 5. an falscher Stelle\nZeile 4: 2., 3. und 4. korrekt, 5. an falscher Stelle\nZeile 5: 1., 3., 4. und 5. korrekt, 2. an falscher Stelle\nZeile 6: GG!`;
 
   expect(result).toBe(targetResult);
 });
@@ -59,8 +59,8 @@ it("throws an error when a line has more than 5 characters", () => {
   expect(() => transform(input)).toThrow();
 });
 
-it("throws an error when there are more than 5 but otherweise correctlines", () => {
-  const input = `🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨`;
+it("throws an error when there are more than 6 but otherweise correctlines", () => {
+  const input = `🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨`;
   expect(() => transform(input)).toThrow();
 });
 
