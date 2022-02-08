@@ -42,7 +42,9 @@ function App() {
               ref={textAreaElement}
               onChange={handleInputChange}
             ></textarea>
-            <p className="error-message">{errorMessage}</p>
+            <p className="error-message" aria-live="assertive">
+              {errorMessage}
+            </p>
           </div>
           <div className="output-area">
             <h2>Resultat</h2>
