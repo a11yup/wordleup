@@ -22,13 +22,14 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
         <h1>WORDLE UP!</h1>
         <p>
           Ein Konverter für Wordle Emoji Matrix in reinen Text (für mehr
           Accessibility in Wordle Tweets)
         </p>
-
+      </header>
+      <main>
         <div className="input-output-area">
           <div className="input-area">
             <h2>Eingabe</h2>
@@ -46,7 +47,7 @@ function App() {
             <code className="result">{result}</code>
           </div>
         </div>
-      </header>
+      </main>
     </div>
   );
 }
