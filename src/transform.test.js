@@ -36,6 +36,15 @@ it("outputs the correct result when everything is wrong for 5 rounds", () => {
   expect(result).toBe(targetResult);
 });
 
+it("treats black exactly the same as grey squares", () => {
+  const input = `⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛\n⬛⬛⬛⬛⬛`;
+  const result = transform(input);
+
+  const targetResult = `Zeile 1: ZONK!\nZeile 2: ZONK!\nZeile 3: ZONK!\nZeile 4: ZONK!\nZeile 5: ZONK!`;
+
+  expect(result).toBe(targetResult);
+});
+
 it("outpus the correct result when everything is in the wrong spot all the time", () => {
   const input = `🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨`;
   const result = transform(input);

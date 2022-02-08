@@ -6,18 +6,18 @@ const WIN_TEXT = "GG!";
 const ALL_WRONG_TEXT = "ZONK!";
 const ALL_IN_WRONG_SPOT_TEXT = "Alles an falscher Stelle";
 export const INVALID_INPUT_ERROR_MESSAGE =
-  "Ungültige Eingabe. Die Eingabe muss aus 1-5 Zeilen bestehen, die jeweils genau 5 Zeichen aus der folgenden Liste enthalten: 🟨, ⬜, 🟩";
+  "Ungültige Eingabe. Die Eingabe muss aus 1-5 Zeilen bestehen, die jeweils genau 5 Zeichen aus der folgenden Liste enthalten: 🟨, ⬜ bzw. ⬛, 🟩";
 const EMPTY_INPUT_ERROR_MESSAGE =
   "Ungültige Eingabe. Es wurde nichts eingegeben.";
 
 const INPUT_VALIDATION_PATTERN =
-  /^[🟩🟨⬜]{5}\n(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n?)?$/u;
+  /^[🟩🟨⬜⬛]{5}\n(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n?)?$/u;
 
 const createEnumerationString = (numbers) =>
   numbers.reduce((previous, current, index) => {
     if (index === 0) {
       return `${current}.`;
-    } else if (numbers.length - 1) {
+    } else if (index === numbers.length - 1) {
       return `${previous} und ${current}.`;
     } else {
       return `${previous}, ${current}.`;
