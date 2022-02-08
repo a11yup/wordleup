@@ -11,7 +11,7 @@ const EMPTY_INPUT_ERROR_MESSAGE =
   "Die Eingabe ist ungültig. Sie muss einen nicht-leeren Text enthalten";
 
 const INPUT_VALIDATION_PATTERN =
-  /[🟩🟨⬜]{5}\n(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n?)?$/u;
+  /^[🟩🟨⬜]{5}\n(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n)?(?:[🟩🟨⬜]{5}\n?)?$/u;
 
 const createEnumerationString = (numbers) =>
   numbers.reduce((previous, current, index) => {

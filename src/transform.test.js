@@ -1,6 +1,6 @@
-import transform, { INVALID_INPUT_ERROR_MESSAGE } from "./transform.js";
+import transform from "./transform.js";
 
-it("win in first round", () => {
+it("outputs the correct result when the first line is already a win", () => {
   const input = `🟩🟩🟩🟩🟩\n`;
   const result = transform(input);
 
@@ -9,7 +9,7 @@ it("win in first round", () => {
   expect(result).toBe(targetResult);
 });
 
-it("win in last round", () => {
+it("outputs the correct result when there is a win in last round", () => {
   const input = `⬜⬜🟨⬜🟨\n🟨⬜🟨🟨⬜\n⬜⬜🟩🟩🟨\n⬜🟩🟩🟩🟨\n🟩🟩🟩🟩🟩`;
   const result = transform(input);
 
@@ -18,7 +18,7 @@ it("win in last round", () => {
   expect(result).toBe(targetResult);
 });
 
-it("win in 4th round", () => {
+it("outputs the correct result when there is a win in the 4th round", () => {
   const input = `⬜⬜🟨⬜🟨\n🟨⬜🟨🟨⬜\n⬜⬜🟩🟩🟨\n🟩🟩🟩🟩🟩`;
   const result = transform(input);
 
@@ -27,7 +27,7 @@ it("win in 4th round", () => {
   expect(result).toBe(targetResult);
 });
 
-it("lose completely", () => {
+it("outputs the correct result when everything is wrong for 5 rounds", () => {
   const input = `⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜\n⬜⬜⬜⬜⬜`;
   const result = transform(input);
 
@@ -36,7 +36,7 @@ it("lose completely", () => {
   expect(result).toBe(targetResult);
 });
 
-it("everything in its wrong place all the time", () => {
+it("outpus the correct result when everything is in the wrong spot all the time", () => {
   const input = `🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨`;
   const result = transform(input);
 
@@ -46,6 +46,16 @@ it("everything in its wrong place all the time", () => {
 });
 
 it("throws an error when a line has more than 5 characters", () => {
-  const input = `🟨🟨🟨🟨🟨🟨d\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨`;
+  const input = `🟨🟨🟨🟨🟨🟩\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨`;
+  expect(() => transform(input)).toThrow();
+});
+
+it("throws an error when there are more than 5 but otherweise correctlines", () => {
+  const input = `🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨`;
+  expect(() => transform(input)).toThrow();
+});
+
+it("throws an error when there is any character othen than the 3 allowed ones", () => {
+  const input = `🟨🟨x🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨\n🟨🟨🟨🟨🟨`;
   expect(() => transform(input)).toThrow();
 });
