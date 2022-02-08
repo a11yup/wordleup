@@ -20,7 +20,7 @@ function App() {
     }
   };
 
-  const handleCopyClick = (event) => {
+  const handleCopyClick = () => {
     navigator.clipboard.writeText(result);
   };
 
