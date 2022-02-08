@@ -11,29 +11,32 @@ header {
   padding: 2rem;
 }
 
+main {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
 .emoji-matrix-input {
   height: 200px;
   font-size: 2rem;
 
   margin-bottom: 1rem;
-  width: 100%;
+  width: 90%;
 }
 
 .result {
   white-space: pre-line;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .input-output-area {
   display: flex;
   flex-direction: column;
-  width: 80vw;
 }
 
 @media only screen and (min-width: 640px) {
   .input-output-area {
     flex-direction: row;
-    width: 80vw;
   }
 }
 
@@ -55,6 +58,8 @@ header {
 
 .label {
   display: block;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .subtext {
