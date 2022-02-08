@@ -1,40 +1,62 @@
+header {
+  margin-bottom: 3rem;
+}
+
 .App {
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 2rem;
 }
 
 .emoji-matrix-input {
   height: 200px;
   font-size: 2rem;
 
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
+  width: 100%;
 }
 
 .result {
-  white-space: pre;
+  white-space: pre-line;
   font-size: 1.25rem;
 }
 
 .input-output-area {
   display: flex;
-  width: 90vw;
+  flex-direction: column;
+  width: 80vw;
+}
+
+@media only screen and (min-width: 640px) {
+  .input-output-area {
+    flex-direction: row;
+    width: 80vw;
+  }
 }
 
 .input-area,
 .output-area {
-  flex: 1 0;
+  flex: 1 0 50%;
   text-align: left;
+}
+
+.input-area {
+  margin-right: 2rem;
 }
 
 .error-message {
   font-size: 16px;
   color: pink;
   min-height: 3rem;
+}
+
+.label {
+  display: block;
+}
+
+.subtext {
+  font-size: 1.25rem;
 }

@@ -24,7 +24,7 @@ function App() {
     <div className="App">
       <header>
         <h1>WORDLE UP!</h1>
-        <p>
+        <p className="subtext">
           Ein Konverter für Wordle Emoji Matrix in reinen Text (für mehr
           Accessibility in Wordle Tweets)
         </p>
@@ -33,7 +33,9 @@ function App() {
         <div className="input-output-area">
           <div className="input-area">
             <h2>Eingabe</h2>
-            <label htmlFor="input">Worlde Emoji Matrix:</label>
+            <label htmlFor="input" className="label">
+              Worlde Emoji Matrix:
+            </label>
             <textarea
               id="input"
               className="emoji-matrix-input"
