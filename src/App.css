@@ -52,3 +52,20 @@ body {
   white-space: pre;
   text-align: left;
 }
+
+.input-output-area {
+  display: flex;
+  width: 90vw;
+  justify-items: space-around;
+}
+
+.input-area,
+.output-area {
+  flex: 1 0;
+  text-align: left;
+}
+
+.error-message {
+  font-size: 16px;
+  color: pink;
+}

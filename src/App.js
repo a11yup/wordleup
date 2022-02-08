@@ -29,18 +29,23 @@ function App() {
           Accessibility in Wordle Tweets)
         </p>
 
-        <h2>Eingabe</h2>
-        <label htmlFor="input">Worlde Emoji Matrix:</label>
-        <textarea
-          id="input"
-          className="emoji-matrix-input"
-          ref={textAreaElement}
-          onChange={handleInputChange}
-        ></textarea>
-        <p className="error-message">{errorMessage}</p>
-
-        <h2>Resultat</h2>
-        <p className="result">{result}</p>
+        <div className="input-output-area">
+          <div className="input-area">
+            <h2>Eingabe</h2>
+            <label htmlFor="input">Worlde Emoji Matrix:</label>
+            <textarea
+              id="input"
+              className="emoji-matrix-input"
+              ref={textAreaElement}
+              onChange={handleInputChange}
+            ></textarea>
+            <p className="error-message">{errorMessage}</p>
+          </div>
+          <div className="output-area">
+            <h2>Resultat</h2>
+            <p className="result">{result}</p>
+          </div>
+        </div>
       </header>
     </div>
   );
