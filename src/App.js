@@ -65,6 +65,7 @@ function App() {
               className="emoji-matrix-input"
               ref={textAreaElement}
               onChange={transformText}
+              rows="11"
             ></textarea>
             <p className="error-message" aria-live="assertive">
               {errorMessage}
