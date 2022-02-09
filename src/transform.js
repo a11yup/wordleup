@@ -11,7 +11,7 @@ const EMPTY_INPUT_ERROR_MESSAGE =
   "Ungültige Eingabe. Es wurde nichts eingegeben.";
 
 const INPUT_VALIDATION_PATTERN =
-  /^[^🟩🟨⬜⬛]*(?<emojiMatrix>[🟩🟨⬜⬛]{5}\n?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n?)?(?:[🟩🟨⬜⬛]{5}\n?)?)[^🟩🟨⬜⬛]*$/u;
+  /^(?<preText>[^🟩🟨⬜⬛]*)(?<emojiMatrix>[🟩🟨⬜⬛]{5}\n?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5})?)(?<postText>[^🟩🟨⬜⬛]*)$/u;
 
 const createEnumerationString = (numbers) =>
   numbers.reduce((previous, current, index) => {
@@ -24,7 +24,7 @@ const createEnumerationString = (numbers) =>
     }
   }, "");
 
-const transform = (input) => {
+const transform = (input, preserveSurroundingText) => {
   if (input === undefined || typeof input !== "string" || input.length === 0) {
     throw new Error(EMPTY_INPUT_ERROR_MESSAGE);
   }
@@ -35,13 +35,11 @@ const transform = (input) => {
     throw new Error(INVALID_INPUT_ERROR_MESSAGE);
   }
 
-  const trimmedEmojiMatrix = match.groups.emojiMatrix.trim();
-
-  const lines = trimmedEmojiMatrix.split("\n");
+  const lines = match.groups.emojiMatrix.split("\n");
 
   let alreadySolved = false;
 
-  const result = lines
+  const emojiMatrixAsText = lines
     .map((line, index) => {
       // return early
       if (alreadySolved) return "";
@@ -95,7 +93,11 @@ const transform = (input) => {
     .filter(Boolean)
     .join("\n");
 
-  return result;
+  if (preserveSurroundingText) {
+    return match.groups.preText + emojiMatrixAsText + match.groups.postText;
+  } else {
+    return emojiMatrixAsText;
+  }
 };
 
 export default transform;

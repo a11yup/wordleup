@@ -145,3 +145,14 @@ describe("when just any random text is entered", () => {
     expect(() => transform(input)).toThrow();
   });
 });
+
+describe("when preserving surrounding text is activated", () => {
+  it("preserves the pre-text and post-text around the result output", () => {
+    const input = `Wordle 235 X/6\n\n⬜⬜🟨⬜🟨\n🟨⬜🟨🟨⬜\n⬜⬜🟩🟩🟨\n⬜🟩🟩🟩🟨\n🟩🟨🟩🟩🟩\n🟩🟩🟩🟩🟩\n\nwordle.at/play`;
+    const result = transform(input, true);
+
+    const targetResult = `Wordle 235 X/6\n\nZeile 1: 3. und 5. an falscher Stelle\nZeile 2: 1., 3. und 4. an falscher Stelle\nZeile 3: 3. und 4. korrekt, 5. an falscher Stelle\nZeile 4: 2., 3. und 4. korrekt, 5. an falscher Stelle\nZeile 5: 1., 3., 4. und 5. korrekt, 2. an falscher Stelle\nZeile 6: GG!\n\nwordle.at/play`;
+
+    expect(result).toBe(targetResult);
+  });
+});
