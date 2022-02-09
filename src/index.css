@@ -8,6 +8,15 @@ body {
   line-height: 1.5;
 }
 
+header {
+  margin-bottom: 3rem;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
