@@ -6,12 +6,12 @@ const WIN_TEXT = "GG!";
 const ALL_WRONG_TEXT = "ZONK!";
 const ALL_IN_WRONG_SPOT_TEXT = "Alles an falscher Stelle";
 export const INVALID_INPUT_ERROR_MESSAGE =
-  "Ungültige Eingabe. Die Eingabe muss aus 1-5 Zeilen bestehen, die jeweils genau 5 Zeichen aus der folgenden Liste enthalten: 🟨, ⬜ bzw. ⬛, 🟩";
+  "Fehler. Deine Eingabe muss eine Emoji-Zeichenkette enthalten, die aus 1-5 Zeilen besteht, und bei der jede Zeile jeweils genau 5 Zeichen aus der folgenden Liste enthält: 🟨, ⬜ bzw. ⬛, 🟩";
 const EMPTY_INPUT_ERROR_MESSAGE =
   "Ungültige Eingabe. Es wurde nichts eingegeben.";
 
 const INPUT_VALIDATION_PATTERN =
-  /^[🟩🟨⬜⬛]{5}\n(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n?)?(?:[🟩🟨⬜⬛]{5}\n?)?$/u;
+  /^[^🟩🟨⬜⬛]*(?<emojiMatrix>[🟩🟨⬜⬛]{5}\n?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n?)?(?:[🟩🟨⬜⬛]{5}\n?)?)[^🟩🟨⬜⬛]*$/u;
 
 const createEnumerationString = (numbers) =>
   numbers.reduce((previous, current, index) => {
@@ -29,13 +29,15 @@ const transform = (input) => {
     throw new Error(EMPTY_INPUT_ERROR_MESSAGE);
   }
 
-  if (!INPUT_VALIDATION_PATTERN.test(input)) {
+  const match = input.match(INPUT_VALIDATION_PATTERN);
+
+  if (!match) {
     throw new Error(INVALID_INPUT_ERROR_MESSAGE);
   }
 
-  const trimmedInput = input.trim();
+  const trimmedEmojiMatrix = match.groups.emojiMatrix.trim();
 
-  const lines = trimmedInput.split("\n");
+  const lines = trimmedEmojiMatrix.split("\n");
 
   let alreadySolved = false;
 

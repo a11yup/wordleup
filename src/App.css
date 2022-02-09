@@ -53,7 +53,7 @@ main {
 .error-message {
   font-size: 16px;
   color: pink;
-  min-height: 3rem;
+  min-height: 5rem;
 }
 
 .label {
