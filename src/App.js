@@ -4,19 +4,29 @@ import transform from "./transform.js";
 
 function App() {
   const textAreaElement = createRef();
+  const preserveOtherTextCheckboxElement = createRef();
 
   const [result, setResult] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = (event) => {
+  const transformText = () => {
     let transformedResult;
+    const shouldPreserveOtherText =
+      preserveOtherTextCheckboxElement.current.checked;
+    const textInput = textAreaElement.current.value;
     try {
-      transformedResult = transform(event.target.value);
+      transformedResult = transform(textInput, shouldPreserveOtherText);
       setResult(transformedResult);
       setErrorMessage("");
     } catch (error) {
       setResult("");
       setErrorMessage(error.message);
+    }
+  };
+
+  const handlePreserveOtherTextCheckboxClick = () => {
+    if (textAreaElement.current.value) {
+      transformText();
     }
   };
 
@@ -37,14 +47,24 @@ function App() {
         <div className="input-output-area">
           <div className="input-area">
             <h2>Eingabe</h2>
-            <label htmlFor="input" className="label">
+            <input
+              type="checkbox"
+              id="preserve-other-text"
+              onChange={handlePreserveOtherTextCheckboxClick}
+              defaultChecked={true}
+              ref={preserveOtherTextCheckboxElement}
+            />
+            <label htmlFor="preserve-other-text" className="label">
+              Weiteren Text beibehalten
+            </label>
+            <label htmlFor="text-input" className="label text-area-label">
               Worlde Emoji Matrix:
             </label>
             <textarea
-              id="input"
+              id="text-input"
               className="emoji-matrix-input"
               ref={textAreaElement}
-              onChange={handleInputChange}
+              onChange={transformText}
             ></textarea>
             <p className="error-message" aria-live="assertive">
               {errorMessage}
