@@ -78,7 +78,7 @@ function App() {
                 Kopieren
               </button>
             )}
-            <code className="result">{result}</code>
+            {result && <p className="result">{result}</p>}
           </div>
         </div>
       </main>

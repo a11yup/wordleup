@@ -8,15 +8,20 @@
 }
 
 .emoji-matrix-input {
-  font-size: 2rem;
+  font-size: 1.25rem;
 
   margin-bottom: 1rem;
   width: 90%;
+  padding: 0.5rem;
+  border-radius: 8px;
 }
 
 .result {
+  background-color: #373d48;
   white-space: pre-line;
   font-size: 1rem;
+  padding: 2rem;
+  border-radius: 8px;
 }
 
 .input-output-area {
