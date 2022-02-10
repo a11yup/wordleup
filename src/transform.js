@@ -2,8 +2,8 @@ const CORRECT = "🟩";
 const WRONG_SPOT = "🟨";
 const WRONG_SPOT_TEXT_SUFFIX = "an falscher Stelle";
 const CORRECT_TEXT_SUFFIX = "korrekt";
-const WIN_TEXT = "GG!";
-const ALL_WRONG_TEXT = "ZONK!";
+const WIN_TEXT = "Geschafft!";
+const ALL_WRONG_TEXT = "Alles falsch!";
 const ALL_IN_WRONG_SPOT_TEXT = "Alles an falscher Stelle";
 export const INVALID_INPUT_ERROR_MESSAGE =
   "Fehler. Deine Eingabe muss eine Emoji-Zeichenkette enthalten, die aus 1-5 Zeilen besteht, und bei der jede Zeile jeweils genau 5 Zeichen aus der folgenden Liste enthält: 🟨, ⬜ bzw. ⬛, 🟩";
