@@ -11,7 +11,7 @@ const EMPTY_INPUT_ERROR_MESSAGE =
   "Ungültige Eingabe. Es wurde nichts eingegeben.";
 
 const INPUT_VALIDATION_PATTERN =
-  /^(?<preText>[^🟩🟨⬜⬛]*)(?<emojiMatrix>(?:[🟩🟨⬜⬛]{5}\n){1,6})(?<postText>[^🟩🟨⬜⬛]*)$/u;
+  /^(?<preText>[^🟩🟨⬜⬛]*)(?<emojiMatrix>(?:[🟩🟨⬜⬛]{5}\n?){1,6})(?<postText>[^🟩🟨⬜⬛]*)$/u;
 
 const createEnumerationString = (numbers) =>
   numbers.reduce((previous, current, index) => {
