@@ -11,7 +11,7 @@ const EMPTY_INPUT_ERROR_MESSAGE =
   "Ungültige Eingabe. Es wurde nichts eingegeben.";
 
 const INPUT_VALIDATION_PATTERN =
-  /^(?<preText>[^🟩🟨⬜⬛]*)(?<emojiMatrix>[🟩🟨⬜⬛]{5}\n?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5}\n)?(?:[🟩🟨⬜⬛]{5})?)(?<postText>[^🟩🟨⬜⬛]*)$/u;
+  /^(?<preText>[^🟩🟨⬜⬛]*)(?<emojiMatrix>(?:[🟩🟨⬜⬛]{5}\n){1,6})(?<postText>[^🟩🟨⬜⬛]*)$/u;
 
 const createEnumerationString = (numbers) =>
   numbers.reduce((previous, current, index) => {
@@ -35,7 +35,26 @@ const transform = (input, preserveSurroundingText) => {
     throw new Error(INVALID_INPUT_ERROR_MESSAGE);
   }
 
-  const lines = match.groups.emojiMatrix.split("\n");
+  let emojiMatrix = match.groups.emojiMatrix;
+
+  let hasTrailingLineEnd = false;
+
+  if (!preserveSurroundingText) {
+    emojiMatrix = emojiMatrix.trim();
+  } else {
+    // When surrounding text should be preserved we need to preserve all newlines as well.
+    // The regex above unfortunately treats the directly following single newline character after the emoji matrix
+    // as if it belongs to the emoji matrix match group. For splitting purposes we can't have a trailing newline to the
+    // emoji matrix. Thus as a workaround we remove an existing single trailing newline character from the emoji matrix
+    // and add it back at the very end for the intended and complete preservation of surrounding text.
+    hasTrailingLineEnd = emojiMatrix.endsWith("\n");
+
+    if (hasTrailingLineEnd) {
+      emojiMatrix = emojiMatrix.slice(0, -1);
+    }
+  }
+
+  const lines = emojiMatrix.split("\n");
 
   let alreadySolved = false;
 
@@ -93,10 +112,15 @@ const transform = (input, preserveSurroundingText) => {
     .filter(Boolean)
     .join("\n");
 
-  if (preserveSurroundingText) {
-    return match.groups.preText + emojiMatrixAsText + match.groups.postText;
-  } else {
+  if (!preserveSurroundingText) {
     return emojiMatrixAsText;
+  } else {
+    // See comment above where `hasTrailingLineEnd` is assigned
+    return (
+      match.groups.preText +
+      `${emojiMatrixAsText}${hasTrailingLineEnd ? "\n" : ""}` +
+      match.groups.postText
+    );
   }
 };
 

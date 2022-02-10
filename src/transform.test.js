@@ -37,6 +37,33 @@ describe("when pure emoji matrix is input", () => {
     expect(result).toBe(targetResult);
   });
 
+  it("outputs the correct result when there is a full 6 rounds game and a newline at the end", () => {
+    const input = `⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n`;
+    const result = transform(input);
+
+    const targetResult = `Zeile 1: 5. korrekt\nZeile 2: 5. korrekt\nZeile 3: 5. korrekt\nZeile 4: 5. korrekt\nZeile 5: 5. korrekt\nZeile 6: 5. korrekt`;
+
+    expect(result).toBe(targetResult);
+  });
+
+  it("outputs the correct result when there is a full 6 rounds game and mutiple newlines at the end", () => {
+    const input = `⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n\n\n\n`;
+    const result = transform(input);
+
+    const targetResult = `Zeile 1: 5. korrekt\nZeile 2: 5. korrekt\nZeile 3: 5. korrekt\nZeile 4: 5. korrekt\nZeile 5: 5. korrekt\nZeile 6: 5. korrekt`;
+
+    expect(result).toBe(targetResult);
+  });
+
+  it("outputs the correct result when there is a less than 6 rounds game and mutiple newlines at the end", () => {
+    const input = `⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n🟩🟩🟩🟩🟩\n\n\n\n`;
+    const result = transform(input);
+
+    const targetResult = `Zeile 1: 5. korrekt\nZeile 2: 5. korrekt\nZeile 3: 5. korrekt\nZeile 4: 5. korrekt\nZeile 5: GG!`;
+
+    expect(result).toBe(targetResult);
+  });
+
   it("outputs the correct result when there is a win in last round", () => {
     const input = `⬜⬜🟨⬜🟨\n🟨⬜🟨🟨⬜\n⬜⬜🟩🟩🟨\n⬜🟩🟩🟩🟨\n🟩🟨🟩🟩🟩\n🟩🟩🟩🟩🟩`;
     const result = transform(input);
@@ -152,6 +179,24 @@ describe("when preserving surrounding text is activated", () => {
     const result = transform(input, true);
 
     const targetResult = `Wordle 235 X/6\n\nZeile 1: 3. und 5. an falscher Stelle\nZeile 2: 1., 3. und 4. an falscher Stelle\nZeile 3: 3. und 4. korrekt, 5. an falscher Stelle\nZeile 4: 2., 3. und 4. korrekt, 5. an falscher Stelle\nZeile 5: 1., 3., 4. und 5. korrekt, 2. an falscher Stelle\nZeile 6: GG!\n\nwordle.at/play`;
+
+    expect(result).toBe(targetResult);
+  });
+
+  it("outputs the correct result when there is a full 6 rounds game and a newline at the end", () => {
+    const input = `Wordle 235 X/6\n\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n`;
+    const result = transform(input, true);
+
+    const targetResult = `Wordle 235 X/6\n\nZeile 1: 5. korrekt\nZeile 2: 5. korrekt\nZeile 3: 5. korrekt\nZeile 4: 5. korrekt\nZeile 5: 5. korrekt\nZeile 6: 5. korrekt\n`;
+
+    expect(result).toBe(targetResult);
+  });
+
+  it("outputs the correct result when there is a full 6 rounds game and mutiple newlines at the end", () => {
+    const input = `Wordle 235 X/6\n\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n⬜⬜⬜⬜🟩\n\n\n\n`;
+    const result = transform(input, true);
+
+    const targetResult = `Wordle 235 X/6\n\nZeile 1: 5. korrekt\nZeile 2: 5. korrekt\nZeile 3: 5. korrekt\nZeile 4: 5. korrekt\nZeile 5: 5. korrekt\nZeile 6: 5. korrekt\n\n\n\n`;
 
     expect(result).toBe(targetResult);
   });
